@@ -43,7 +43,7 @@ class SignUpPage extends StatelessWidget {
                   bottom: -10,
                   left: 80,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () => authController.pickImage(),
                     icon: Icon(Icons.add_a_photo),
                   ),
                 ),
@@ -79,6 +79,7 @@ class SignUpPage extends StatelessWidget {
                 controller: _passwordcontroller,
                 labelText: 'Password',
                 icon: Icons.password,
+
               ),
             ),
             SizedBox(height: 30.0.h),
@@ -90,9 +91,13 @@ class SignUpPage extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(5.0.r)),
               ),
               child: InkWell(
-                onTap: () {
-                  // Get.offAll(page)
-                },
+                onTap:
+                    () => authController.registeruser(
+                      _usernamecontroller.text,
+                      _emailcontroller.text,
+                      _passwordcontroller.text,
+                      authController.profilePhoto,
+                    ),
                 child: Center(
                   child: Text(
                     "Register",

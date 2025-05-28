@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
+import 'package:tiktok_clone/views/controllers/auth/auth_controller.dart';
 import 'package:tiktok_clone/views/ui/auth/login_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  await Firebase.initializeApp().then((value){
+    Get.put(AuthController());
+  });
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {

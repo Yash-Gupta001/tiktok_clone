@@ -61,8 +61,7 @@ class LoginPage extends StatelessWidget {
               ),
               child: InkWell(
                 onTap: () {
-                  // Get.offAll(page)
-                  print("login tapped");
+                  authController.loginUser(_emailcontroller.text, _passwordcontroller.text);
                 },
                 child: Center(
                   child: Text(
