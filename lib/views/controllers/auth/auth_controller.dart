@@ -5,9 +5,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktok_clone/constants.dart';
-import 'package:tiktok_clone/data/model/user_model.dart' as model;
+import 'package:tiktok_clone/data/model/user.dart' as model;
 import 'package:tiktok_clone/views/ui/auth/login_page.dart';
-import 'package:tiktok_clone/views/ui/home/home_page.dart';
+import 'package:tiktok_clone/views/ui/bottomnavigation.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -15,6 +15,7 @@ class AuthController extends GetxController {
   late Rx<File?> _imagepicker;
 
   File? get profilePhoto => _imagepicker.value;
+  User get user => _user.value!;
 
   @override
   void onReady(){
@@ -30,7 +31,7 @@ class AuthController extends GetxController {
       Get.offAll( () => LoginPage());
     }
     else{
-      Get.offAll( () => HomePage());
+      Get.offAll( () => Bottomnavigation());
     }
   }
 

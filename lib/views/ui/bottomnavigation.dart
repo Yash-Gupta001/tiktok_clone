@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/widgets/custom_icon.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class Bottomnavigation extends StatefulWidget {
+  const Bottomnavigation({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Bottomnavigation> createState() => _BottomnavigationState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _BottomnavigationState extends State<Bottomnavigation> {
   int pageidx = 0;
 
   @override

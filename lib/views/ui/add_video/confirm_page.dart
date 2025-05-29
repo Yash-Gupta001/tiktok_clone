@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:tiktok_clone/views/controllers/upload_video/upload_video_controller.dart';
 import 'package:tiktok_clone/views/widgets/text_input_field.dart';
 import 'package:video_player/video_player.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,10 @@ class _ConfirmPageState extends State<ConfirmPage> {
   TextEditingController songController = TextEditingController();
   TextEditingController captionController = TextEditingController();
 
+  UploadVideoController uploadVideoController = Get.put(
+    UploadVideoController(),
+  );
+
   @override
   void initState() {
     super.initState();
@@ -30,6 +36,12 @@ class _ConfirmPageState extends State<ConfirmPage> {
     controller.play();
     controller.setVolume(1);
     controller.setLooping(true);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
   }
 
   @override
@@ -72,18 +84,19 @@ class _ConfirmPageState extends State<ConfirmPage> {
                     ),
                   ),
                   SizedBox(height: 10.0.h),
-
-                  ElevatedButton(onPressed: () {
-
-                  }, 
-                  child: Text(
-                    "share",
-                    style: TextStyle(
-                      fontSize: 20.0.sp,
-                      color: Colors.white
+                  ElevatedButton(
+                    onPressed: () {
+                      uploadVideoController.uploadvideo(
+                        songController.text,
+                        captionController.text,
+                        widget.videoPath,
+                      );
+                    },
+                    child: Text(
+                      "share",
+                      style: TextStyle(fontSize: 20.0.sp, color: Colors.white),
                     ),
-                  ))
-
+                  ),
                 ],
               ),
             ),
