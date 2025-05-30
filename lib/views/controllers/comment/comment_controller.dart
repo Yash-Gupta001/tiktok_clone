@@ -14,7 +14,7 @@ class CommentController extends GetxController {
     getComment();
   }
 
-  getComment() async{}
+  getComment() async {}
 
   postComment(String commentText) async {
     try {
