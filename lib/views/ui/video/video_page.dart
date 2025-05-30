@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/controllers/video/video_controller.dart';
+import 'package:tiktok_clone/views/ui/comment/comment_page.dart';
 import 'package:tiktok_clone/views/widgets/circle_animation.dart';
 import 'package:tiktok_clone/views/widgets/video_player_item.dart';
 
@@ -162,7 +163,9 @@ class VideoPage extends StatelessWidget {
                           Column(
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.to(CommentPage());
+                                },
                                 child: Icon(
                                   Icons.comment,
                                   size: 40.0.sp,
@@ -205,7 +208,7 @@ class VideoPage extends StatelessWidget {
                     ),
                   ],
                 ),
-
+                
                 CircleAnimation(child: buildMusicAlbum(data.profilePhoto)),
               ],
             );
