@@ -164,7 +164,7 @@ class VideoPage extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Get.to(CommentPage());
+                                  Get.to(CommentPage(id: data.id));
                                 },
                                 child: Icon(
                                   Icons.comment,
