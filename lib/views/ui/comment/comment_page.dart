@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tiktok_clone/constants.dart';
 import 'package:tiktok_clone/views/controllers/comment/comment_controller.dart';
+import 'package:timeago/timeago.dart' as tago;
+
 
 // ignore: must_be_immutable
 class CommentPage extends StatelessWidget {
@@ -27,7 +30,7 @@ class CommentPage extends StatelessWidget {
                   () => ListView.builder(
                     itemCount: commentController.comments.length,
                     itemBuilder: (context, index) {
-                      final comment =commentController.comments[index];
+                      final comment = commentController.comments[index];
                       return ListTile(
                         leading: CircleAvatar(
                           backgroundColor: Colors.black,
@@ -36,7 +39,7 @@ class CommentPage extends StatelessWidget {
                         title: Row(
                           children: [
                             Text(
-                              comment.username,
+                              "${comment.username} ",
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.red,
@@ -54,11 +57,12 @@ class CommentPage extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         subtitle: Row(
                           children: [
                             Text(
-                              'date',
+                              tago.format(
+                                comment.datePublished.toDate()
+                              ),
                               style: TextStyle(
                                 fontSize: 12.0.sp,
                                 color: Colors.white,
@@ -66,7 +70,7 @@ class CommentPage extends StatelessWidget {
                             ),
                             SizedBox(width: 10.0.w),
                             Text(
-                              '10 likes',
+                              '${comment.likes.length} likes',
                               style: TextStyle(
                                 fontSize: 12.0.sp,
                                 color: Colors.white,
@@ -76,12 +80,12 @@ class CommentPage extends StatelessWidget {
                         ),
                         trailing: InkWell(
                           onTap: () {
-                            commentController.likeComment;
+                            commentController.likeComment(comment.id);
                           },
                           child: Icon(
                             Icons.favorite,
                             size: 25.0.sp,
-                            color: Colors.red,
+                            color: comment.likes.contains(authController.user.uid) ? Colors.red : Colors.white,
                           ),
                         ),
                       );
