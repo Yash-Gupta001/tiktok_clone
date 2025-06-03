@@ -18,20 +18,18 @@ class AuthController extends GetxController {
   User get user => _user.value!;
 
   @override
-  void onReady(){
+  void onReady() {
     super.onReady();
     _user = Rx<User?>(firebaseauth.currentUser);
     _user.bindStream(firebaseauth.authStateChanges());
     ever(_user, _setInitialScreen);
   }
 
-
-  _setInitialScreen(User? user){
-    if(user == null){
-      Get.offAll( () => LoginPage());
-    }
-    else{
-      Get.offAll( () => Bottomnavigation());
+  _setInitialScreen(User? user) {
+    if (user == null) {
+      Get.offAll(() => LoginPage());
+    } else {
+      Get.offAll(() => Bottomnavigation());
     }
   }
 
@@ -122,6 +120,8 @@ class AuthController extends GetxController {
     }
   }
 
-
-
+  /// to signout the user from the app
+  void signOut() async {
+    await firebaseauth.signOut();
+  }
 }
